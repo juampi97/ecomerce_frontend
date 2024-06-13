@@ -1,15 +1,17 @@
 "use client";
 
 import React from "react";
-import estilos from "./estilos.module.css";
-import { useFetch } from "./functions/useFetch.js";
-import UserCard from "./components/UserCard";
+import estilos from "../estilos.module.css";
+import { useFetch } from "../functions/useFetch.js";
+import UserDetail from "../components/UserDetail.js";
 
-export default function Home() {
+export default function Page({params}) {
   const { data, loading, error } = useFetch(
     "http://localhost:5000/api/usuarios"
-  );
-  const users = data;
+  )
+  const user = data.filter(((data) => data.user == params.user))
+
+
 
   return (
     <main className={estilos.main}>
@@ -34,8 +36,8 @@ export default function Home() {
             <p>Loading...</p>
           </div>
         )}
-        {data?.map((u) => (
-          <UserCard user={u} key={u.mail} />
+        {user?.map((u) => (
+          <UserDetail user={u} key={u.mail} />
         ))}
       </div>
     </main>
