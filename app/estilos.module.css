@@ -39,3 +39,7 @@
   background: #fff;
   color: black;
 }
+
+.cursorp {
+  cursor: pointer;
+}
