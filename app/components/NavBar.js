@@ -1,25 +1,30 @@
 import React from "react";
-import estilos from "../estilos.module.css"
-import { useRouter  } from "next/navigation";
+import estilos from "../estilos.module.css";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
+  const router = useRouter();
 
-  const router = useRouter()
+  const handleClickIndex = () => {
+    router.push(`/`);
+  };
 
-  const handleClick = () => {
-    router.push(`/`)
-  }
+  const handleClickLogin = () => {
+    router.push(`/login`);
+  };
 
   return (
     <>
       <div className={estilos.nav}>
-        <h1 style={{cursor: 'pointer'}} onClick={handleClick}>Index</h1>
-        <a
-          className="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-          href="#"
+        <h1 style={{ cursor: "pointer" }} onClick={handleClickIndex}>
+          Index
+        </h1>
+        <button
+          onClick={handleClickLogin}
+          className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
         >
           Login
-        </a>
+        </button>
       </div>
     </>
   );
