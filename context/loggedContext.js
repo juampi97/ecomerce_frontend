@@ -33,9 +33,8 @@ const reducer = (state, action) => {
       }
 
     case "LOGOUT":
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      return { ...state, tokenValid: false, user: undefined, jwt: undefined };
+      localStorage.clear();
+      return { ...state, tokenValid: false };
     default:
       return state;
   }
@@ -47,9 +46,11 @@ export const LoggedProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if ((typeof localStorage.getItem("user") !== "undefined") && (typeof localStorage.getItem("token") != "undefined")) {
+    if (typeof window != 'undefined') {
       const jwt = localStorage.getItem("token");
-      dispatch({ type: "LOGIN", payload: { jwt: jwt } });
+      if (jwt != 'null'){
+        dispatch({ type: "LOGIN", payload: { jwt: jwt } });
+      } 
     }
   }, []);
 

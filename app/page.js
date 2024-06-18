@@ -13,7 +13,7 @@ export default function Home() {
   
   return (
     <main className={estilos.main}>
-      {state.tokenValid ? <NavBarLogout /> : <NavBar />}
+      <NavBar />
       <div className={estilos.contenedor}>
         {state.tokenValid ? (
           <div className={estilos.texto}>
