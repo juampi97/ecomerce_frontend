@@ -1,15 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import LoggedContext from "../context/loggedContext.js";
 
 const FormLogin = () => {
-  const [ email, setEmail ] = useState("");
-  const [ password, setPassword ] = useState("");
-  const [ data, setData ] = useState({ email: "", password: "" });
+  const { state, dispatch } = useContext(LoggedContext);
+  console.log(state);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [data, setData] = useState({ email: "", password: "" });
 
   const router = useRouter();
 
-  const BASE_URL_BACKEND = process.env.NEXT_PUBLIC_BASE_URL_BACKEND
+  const BASE_URL_BACKEND = process.env.NEXT_PUBLIC_BASE_URL_BACKEND;
 
   const clearState = () => {
     setEmail("");
@@ -20,27 +24,23 @@ const FormLogin = () => {
   const handleClickRegisterPage = () => {
     router.push(`/register`);
   };
-  
+
   const Login = async () => {
     fetch(`${BASE_URL_BACKEND}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-    .then((res) => res.json())
-    .then(({status, payload}) => {
-      if(payload != "Usuario o password incorrectos"){
-        localStorage.setItem('token', payload)
-        console.log(payload)
-      } else {
-        console.log(payload);
-      }
-
-      // clearState()
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+      .then((res) => res.json())
+      .then(({ status, payload }) => {
+        if (payload != "Usuario o password incorrectos") {
+          dispatch({ type: "LOGIN", payload: { jwt: payload } });
+        } else {}
+        // clearState()
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handdleLogin = (e) => {
@@ -50,7 +50,7 @@ const FormLogin = () => {
       password: password,
     };
     setData(datos);
-    Login()
+    Login();
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import estilos from "../estilos.module.css";
+import estilos from "../app/estilos.module.css";
 
 const UserDetail = ({ user }) => {
   return (

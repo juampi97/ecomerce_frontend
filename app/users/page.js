@@ -2,9 +2,9 @@
 
 import React from "react";
 import estilos from "../estilos.module.css";
-import { useFetch } from "../functions/useFetch.js";
-import UserCard from "../components/UserCard";
-import NavBar from "../components/NavBar";
+import { useFetch } from "../../functions/useFetch.js";
+import UserCard from "../../components/UserCard";
+import NavBar from "../../components/NavBar";
 
 
 export default function Users() {

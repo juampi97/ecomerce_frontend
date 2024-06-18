@@ -33,7 +33,7 @@ const FormRegister = () => {
     })
       .then((res) => res.json())
       .then(({ status, payload }) => {
-        console.log(payload);
+        // console.log(payload);
         // clearState();
       })
       .catch((err) => {

@@ -2,9 +2,9 @@
 
 import React from "react";
 import estilos from "../estilos.module.css";
-import { useFetch } from "../functions/useFetch.js";
-import NavBar from "../components/NavBar.js";
-import FormLogin from "../components/FormLogin";
+import { useFetch } from "../../functions/useFetch.js";
+import NavBar from "../../components/NavBar.js";
+import FormLogin from "../../components/FormLogin";
 
 
 export default function Page() {
